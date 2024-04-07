@@ -4,3 +4,7 @@
 /Debug
 /Release
 /laplock.vcxproj.user
+*.pdb
+*.obj
+*.ilk
+*.exe
