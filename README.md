@@ -16,13 +16,17 @@ Note that laplock listens intelligently for events; meaning, it doesn't consume 
 
 ## Compilation
 
-There is only one C++ file and it should compile using any Windows compiler.
+There is only one C++ file and it should compile using any Windows compiler. It was successfully compiled using Build Tools for VS 2022.
 
-Most easily you can compile it by installing *Build Tools for Visual Studio 20XX* and then choosing *Desktop development with C++* in the installer. This installs `cl.exe` which can be run via *Developer Command Prompt for Visual Studio*. The following command compiles `laplock.exe` in `Release` folder:
+Most easily you can compile it by installing *Build Tools for Visual Studio 20XX* and then choosing *Desktop development with C++* in the installer. This installs `cl.exe` which can be run via *Developer Command Prompt for Visual Studio*. The following command compiles a statically linked binary in `Release` folder:
 
     cl.exe /O2 /EHsc /DNDEBUG /nologo /MT /FeRelease/laplock.exe laplock.cpp
 
-File was successfully compiled using Build Tools for VS 2022.
+You can use the following command to compile a binary with debug symbols in the `Debug` folder:
+
+    cl.exe /Zi /EHsc /nologo /FeDebug\laplock.exe laplock.cpp
+
+These commands can be also easily run from VS Code, as they were added in `.vscode/tasks.json` file.
 
 Detailed instructions how to install build tools, configure them, and debug C++ programs using cl.exe and VS Code are avaiable in [Microsoft docs](https://code.visualstudio.com/docs/cpp/config-msvc).
 

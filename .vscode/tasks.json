@@ -8,7 +8,7 @@
                 "/Zi",
                 "/EHsc",
                 "/nologo",
-                "/Fe${fileWorkspaceFolder}\\laplock.exe",
+                "/Fe${fileWorkspaceFolder}\\Debug\\laplock.exe",
                 "laplock.cpp",
             ],
             "problemMatcher": [
