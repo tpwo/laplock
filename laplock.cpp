@@ -23,6 +23,9 @@
 
 #include <windows.h>
 
+#pragma comment(lib, "Ole32.lib")
+#pragma comment(lib, "User32.lib")
+
 namespace laplock {
 namespace {
 
