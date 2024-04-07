@@ -2,18 +2,15 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: cl.exe build active file",
+            "label": "C/C++: cl.exe debug build laplock.cpp",
             "command": "cl.exe",
             "args": [
                 "/Zi",
                 "/EHsc",
                 "/nologo",
-                "/Fe${fileDirname}\\${fileBasenameNoExtension}.exe",
-                "${file}",
+                "/Fe${fileWorkspaceFolder}\\laplock.exe",
+                "laplock.cpp",
             ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
             "problemMatcher": [
                 "$msCompile"
             ],
@@ -25,19 +22,16 @@
         },
         {
             "type": "cppbuild",
-            "label": "C/C++: cl.exe release build",
+            "label": "C/C++: cl.exe release build laplock.cpp",
             "command": "cl.exe",
             "args": [
                 "/O2",
                 "/EHsc",
                 "/nologo",
                 "/MT",
-                "/Fe${fileDirname}\\Release\\${fileBasenameNoExtension}.exe",
-                "${file}",
+                "/Fe${fileWorkspaceFolder}\\Release\\laplock.exe",
+                "laplock.cpp",
             ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
             "problemMatcher": [
                 "$msCompile"
             ],
