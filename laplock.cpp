@@ -213,5 +213,17 @@ int CALLBACK WinMain(HINSTANCE instance, HINSTANCE, LPSTR commandLine, int)
 
 int CALLBACK WinMain(HINSTANCE instance, HINSTANCE prevInstance, LPSTR commandLine, int cmdShow)
 {
-	return laplock::WinMain(instance, prevInstance, commandLine, cmdShow);
+	HANDLE hHandle = CreateMutexW(NULL, TRUE, L"laplockMutex");
+	if (ERROR_ALREADY_EXISTS == GetLastError())
+	{
+	// Program is already running somewhere
+	exit(EXIT_FAILURE);
+	}
+
+	int result = laplock::WinMain(instance, prevInstance, commandLine, cmdShow);
+
+	ReleaseMutex(hHandle);
+	CloseHandle(hHandle);
+
+	return(result);
 }
