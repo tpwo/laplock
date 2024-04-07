@@ -167,9 +167,6 @@ static HWND createWindow(HINSTANCE instance)
 
 static void registerNotification(HWND window)
 {
-	LogLine() << "Registering GUID_MONITOR_POWER_ON (GUID: " << GUID_MONITOR_POWER_ON << ")";
-	if (!RegisterPowerSettingNotification(window, &GUID_MONITOR_POWER_ON, DEVICE_NOTIFY_WINDOW_HANDLE))
-		systemError(L"cannot register GUID_MONITOR_POWER_ON power setting notification");
 	LogLine() << "Registering GUID_LIDSWITCH_STATE_CHANGE (GUID: " << GUID_LIDSWITCH_STATE_CHANGE << ")";
 	if (!RegisterPowerSettingNotification(window, &GUID_LIDSWITCH_STATE_CHANGE, DEVICE_NOTIFY_WINDOW_HANDLE))
 		systemError(L"cannot register GUID_LIDSWITCH_STATE_CHANGE power setting notification");
