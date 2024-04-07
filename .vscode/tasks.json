@@ -1,0 +1,52 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: cl.exe build active file",
+            "command": "cl.exe",
+            "args": [
+                "/Zi",
+                "/EHsc",
+                "/nologo",
+                "/Fe${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "${file}",
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compile binary for debugging"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: cl.exe release build",
+            "command": "cl.exe",
+            "args": [
+                "/O2",
+                "/EHsc",
+                "/nologo",
+                "/MT",
+                "/Fe${fileDirname}\\Release\\${fileBasenameNoExtension}.exe",
+                "${file}",
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Compile statically-linked binary for release"
+        }
+    ],
+    "version": "2.0.0"
+}
