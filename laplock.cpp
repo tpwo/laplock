@@ -107,7 +107,7 @@ static LRESULT CALLBACK windowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 
 	const POWERBROADCAST_SETTING* setting = reinterpret_cast<const POWERBROADCAST_SETTING*>(lParam);
 	LogLine() << "Received POWERBROADCAST_SETTING " << setting->PowerSetting;
-	if (setting->PowerSetting != GUID_MONITOR_POWER_ON && setting->PowerSetting != GUID_LIDSWITCH_STATE_CHANGE) {
+	if (setting->PowerSetting != GUID_LIDSWITCH_STATE_CHANGE) {
 		LogLine() << "Received irrelevant POWERBROADCAST_SETTING";
 		return DefWindowProc(hWnd, uMsg, wParam, lParam);
 	}
