@@ -112,10 +112,20 @@ static LRESULT CALLBACK windowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 		return DefWindowProc(hWnd, uMsg, wParam, lParam);
 	}
 
-	const DWORD* state = reinterpret_cast<const DWORD*>(&setting->Data);
-	LogLine() << "POWERBROADCAST_SETTING state: " << *state;
-	if (*state != 0) {
-		LogLine() << "Irrelevant POWERBROADCAST_SETTING state";
+	static bool isFirstLidMessage = true;
+	const DWORD* isLidOpen = reinterpret_cast<const DWORD*>(&setting->Data);
+	LogLine() << "POWERBROADCAST_SETTING state: " << *isLidOpen;
+
+	if (isFirstLidMessage) {
+		// We ignore the first message about the lid, as otherwise the
+		// screen will lock if the lid is closed immediately after
+		// program starts.
+		isFirstLidMessage = false;
+		LogLine() << "Ignoring the first message about the lid state";
+		return DefWindowProc(hWnd, uMsg, wParam, lParam);
+	}
+	else if (*isLidOpen != 0) {
+		LogLine() << "Irrelevant POWERBROADCAST_SETTING state (lid is open)";
 		return DefWindowProc(hWnd, uMsg, wParam, lParam);
 	}
 
