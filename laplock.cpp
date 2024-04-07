@@ -68,7 +68,7 @@ static void systemError(wchar_t* what)
 	static wchar_t buffer[1024];
 	const wchar_t* errorMessage = buffer;
 
-	if (!FormatMessage(
+	if (!FormatMessageW(
 		FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
 		0,
 		error,
@@ -85,7 +85,7 @@ static void systemError(wchar_t* what)
 	message << L"A system error occured within laplock." << std::endl;
 	message << L"Operation: " << what << std::endl;
 	message << L"System message: " << errorMessage;
-	MessageBox(NULL, message.str().c_str(), L"laplock error", MB_OK | MB_ICONERROR);
+	MessageBoxW(NULL, message.str().c_str(), L"laplock error", MB_OK | MB_ICONERROR);
 
 	exit(EXIT_FAILURE);
 }
@@ -128,21 +128,21 @@ static LRESULT CALLBACK windowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 static void registerWindowClass(HINSTANCE instance)
 {
 	LogLine() << "Registering window class";
-	WNDCLASSEX windowClass = { 0 };
+	WNDCLASSEXW windowClass = { 0 };
 
-	windowClass.cbSize = sizeof(WNDCLASSEX);
+	windowClass.cbSize = sizeof(WNDCLASSEXW);
 	windowClass.lpfnWndProc = &windowProcedure;
 	windowClass.hInstance = instance;
 	windowClass.lpszClassName = L"laplock";
 
-	if (RegisterClassEx(&windowClass) == 0)
+	if (RegisterClassExW(&windowClass) == 0)
 		systemError(L"registering window class");
 }
 
 static HWND createWindow(HINSTANCE instance)
 {
 	LogLine() << "Creating window";
-	HWND hWnd = CreateWindow(
+	HWND hWnd = CreateWindowW(
 		L"laplock",
 		NULL,
 		0,
